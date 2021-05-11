@@ -1,3 +1,6 @@
+import statistics
+import numpy as np
+
 def annealing_schedule(schedule, temperature, temperature_init, iteration, gamma=0.75):
     temperature_prev = temperature
     if schedule == 'logarithmic':
