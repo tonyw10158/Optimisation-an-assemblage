@@ -1,6 +1,12 @@
 import numpy as np
 
 def selection(f, population, select='tournament', num=6):
+    """
+    A helper function for selection.
+        f: A continuous objective function
+        population: An integer; the population at the initial step
+        select: Three selection options
+    """
     parent = None
     if select == 'tournament':
         raw_sample = np.random.choice(list(population), num)
@@ -10,7 +16,7 @@ def selection(f, population, select='tournament', num=6):
     elif select == 'roulette':
         sorted_population = sorted(population, key=f)
         sorted_fitness = [f(individual) for individual in sorted_population]
-        fitness_list = sorted_fitness / np.sum(sorted_fitness)
+        fitness_list = sorted_fitness / np.sum(sorted_f itness)
         fitness_list = fitness_list[::-1]
         parent = np.random.choice(population, 1, p=fitness_list)        
     elif select == 'truncation':
@@ -20,6 +26,14 @@ def selection(f, population, select='tournament', num=6):
     return parent
   
   def crossover(parent1, parent2, population, scalar=0.5, cross='single'):
+    """
+    A helper function for crossover
+        parent1: The chromosomes of the first parent
+        parent2: The chromosomes of the second parent
+        population: An integer; the population at the initial step
+        scalar: For real valued chromosomes - set to 0.5
+        cross: An option for the 3 or 4 crossover methods
+    """
     offspring = np.zeros(len(population))
     if cross == 'single':
         rand = np.random.randint(0, len(population))
@@ -44,6 +58,10 @@ def selection(f, population, select='tournament', num=6):
     return offspring
   
   def mutate(offspring):
+    """
+    A helper function for mutation
+        offspring: The population after the crossover phase.
+    """
     rate = 1 / len(offspring)
     for i in range(len(offspring)):
         draw = np.random.uniform(0, 1)
@@ -52,6 +70,16 @@ def selection(f, population, select='tournament', num=6):
     return offspring
   
   def genetic_algorithm(f, dim=20, select='tournament', cross='single', init_method='cauchy', scalar=0.5, k_max=25000):
+    """
+    The main function for the Genetic Algorithm
+        f: An objective function
+        dim: Vector size of the population (only if initialisation option is not set)
+        selection: An option for chromosome selection
+        cross: An option for the crossover phase
+        init_method: An option to initialise the population
+        scalar: Best set to the default 0.5
+        k_max: Total number of iterations
+    """
     x_init = None
     if init_method == 'cauchy':
         x_init = np.random.standard_cauchy(dim)  
