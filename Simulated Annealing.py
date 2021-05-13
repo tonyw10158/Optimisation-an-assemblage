@@ -2,6 +2,9 @@ import statistics
 import numpy as np
 
 def annealing_schedule(schedule, temperature, temperature_init, iteration, gamma=0.75):
+    """
+    A function to choose between one of the three schedules as demonstrated in the textbook.
+    """
     temperature_prev = temperature
     if schedule == 'logarithmic':
         temperature = temperature_init * log(2) / log((iteration + 1) + 1)
@@ -12,6 +15,15 @@ def annealing_schedule(schedule, temperature, temperature_init, iteration, gamma
     return temperature
   
   def simulated_annealing(f, dim=20, schedule='exponential', temperature=10000000, gamma = 0.75, init_method='gaussian', k_max=25000):
+    """
+    The main function for SA.
+        f: A continuous objective function
+        schedule: One of three schedules
+        temperature: The starting temperature
+        gamma: The temperature decay rate
+        init_method: Ways to initialise the population
+        k_max: Number of iterations
+    """
     x = None
     if init_method == 'cauchy':
         x = np.random.standard_cauchy(dim)
