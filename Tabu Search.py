@@ -1,3 +1,27 @@
+def initial_solution_greedy(graph):
+    visited = set()
+    path = list()
+    start = 0
+    following = 0
+    path.append(start)
+    visited.add(start)
+    for i in range(len(graph) - 1):
+        row = np.copy(graph[start])
+        row[list(visited)] = np.inf
+        following = np.where(row==np.amin(row))[0][0]
+        visited.add(following)
+        path.append(following)
+        start = following
+    path.append(0)
+    return path
+
+def initial_solution_random(graph):
+    path = np.random.choice(range(1, len(graph)), len(graph)-1, False)
+    path = list(path)
+    path.insert(0, 0)
+    path.append(0)
+    return path
+
 def get_neighbors(graph, solution, tabu, tenure, neighbors=4):
     switch = None
     switch_rev = None
