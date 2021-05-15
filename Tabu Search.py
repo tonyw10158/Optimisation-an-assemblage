@@ -1,3 +1,10 @@
+def calculate_distance(graph, path_coord):
+    distance = 0
+    for i, j in enumerate(path_coord[:-1]):
+        matrix_index = ((j, path_coord[i+1]))
+        distance += graph[matrix_index]
+    return distance
+
 def initial_solution_greedy(graph):
     visited = set()
     path = list()
