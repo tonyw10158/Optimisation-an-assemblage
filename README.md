@@ -1,6 +1,6 @@
 # Optimisation-an-assemblage
 ------------------------------
-A collective of selected algorithms from the book *Algorithms for Optimization* translated into the Python programming language. Currently, the repositories include some of the most potent algorithms from the textbook.
+A collective of selected algorithms from the book *Algorithms for Optimization* translated into the Python programming language. Currently, the repositories include some of the most potent algorithms from the textbook. Tabu Search is not mentioned in the textbook, and is an original take on the algorithm for discrete problems.
 
 Currently, Genetic Algorithm and Simulated Annealing requires a continuous objective function(s). Example of such functions are found in the file of the same name.
 
