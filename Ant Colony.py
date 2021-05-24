@@ -1,6 +1,9 @@
 import numpy as np
 
 def send_ants(nodes, m, tau, eta, alpha, beta, start):
+    """
+    A helper function to initialise routes throughout each iteration
+    """
     history = []
     for ant in range(m):
         route = []
